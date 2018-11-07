@@ -9,11 +9,11 @@ function is_https(){
   	 return FALSE;
   }
 }
-     if ($port === 3000) {
+//      if ($port === 3000) {
      	 $schema = is_https() ? "https" : "http";
      	 $schema .= "://localhost:".$port;
      	  header("location: ".$schema."");
-     }else{
-     	echo "A PROBLEM OCCURRED.";
-     }
+//      }else{
+//      	echo "A PROBLEM OCCURRED.";
+//      }
  ?>
