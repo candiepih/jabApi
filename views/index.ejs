@@ -1,0 +1,240 @@
+<?php 
+session_start();
+include_once ('inc/php/path_defination.php'); 
+include_once (php_path("db_queries.php")); 
+if (isset($_SESSION['data'])) {
+  $_SESSION["email"] = $_SESSION['data']["email"];
+  $_SESSION["username"] = $_SESSION['data']["username"];
+  $_SESSION["hash"] = $_SESSION['data']["hash"];
+}else{
+  $_SESSION['data']["email"] = "";
+  $_SESSION['data']["username"] = "";
+  $_SESSION['data']["hash"] = "";
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jab Bulk email system</title>
+	<link rel="stylesheet" type="text/css" href="style/sys.css">
+	<script src="inc/js/angular.js"></script>
+	<script src="inc/js/ng-apifetch.js"></script>
+</head>
+<body ng-app>
+
+<div id="html-cover"><!-- covers the whole document from top to bottom excluding login form -->
+<!-- login status div -->
+<div class="loginstatus"><span class="close"></span><span>YOU HAVE SUCCESFULLY LOGGED OUT</span></div>
+<!-- End of login status div -->
+<!-- start of menu div -->
+<div class="cover">
+  <!--top navigation bar-->
+ 	<nav>
+ 		<h1><b class="hed">jab</b>supertips</h1>
+   <?php if (verification::is_logged_in()) {?>
+    <button id="logout" onclick="logoutUser(this)">LOGOUT</button>
+    <?php } ?> 
+ </nav>
+
+ <!--End of top navigation bar-->
+ <div class="menu-div">
+ 	<div class="menu">
+     <p class="content-one"></p>
+ 	  <p class="menu-svg"><span class="content-svg menu-header">COMPOSE AND SEND EMAILS</span></p>
+ 	  <p class="menu-header">COMPOSE AND SEND EMAILS</p>
+ 	</div>
+ 	<div class="menu">
+     <p class="content-two"></p>
+ 	  <p class="menu-svg"><span class="content-svg menu-header">SUBSCRIBE LIST STATUS</span></p>
+ 	  <p class="menu-header">SEND TO CHOOSEN LIST & LIST STATUS</p>
+ 	</div>
+ 	<div class="menu">
+     <p class="content-three"></p>
+ 	  <p class="menu-svg"><span class="content-svg menu-header">SEND TO CHOOSEN PERSON</span></p>
+ 	  <p class="menu-header">SEND TO PARTICULAR PERSON</p>
+ 	</div>
+</div>
+
+<div class="menu-div">
+ 	<div class="menu">
+     <p class="content-four"></p>
+ 	  <p class="menu-svg"><span class="content-svg menu-header">BUILD MAILING LISTS</span></p>
+ 	  <p class="menu-header">BUILD AND ADD TO MAILING LISTS</p>
+ 	</div>
+ 	<div class="menu">
+     <p class="content-five"></p>
+ 	  <p class="menu-svg"><span class="content-svg menu-header">ANALYSIS SYSTEM</span></p>
+ 	  <p class="menu-header">MATCH ANALYSIS ALGORITHM</p>
+ 	</div>
+ 	<div class="menu">
+     <p class="content-six"></p>
+ 	  <p class="menu-svg"><span class="content-svg menu-header">CONTACTS CENTER</span></p>
+ 	  <p class="menu-header">CONTACTS CENTER</p>
+ 	</div>
+ </div>
+</div>
+<!-- end of menu div -->
+<!-- STARTING of the divs content -->
+<?php if (verification::is_logged_in()) {?>
+<div id="content-one">
+   <span class="close-content-one">X</span>
+   <!-- <div class="main"> -->
+    <div class="content-send-msg"><!-- covers the flex content -->
+      <div class="content-send-msg-inside"><!-- containers in the flex div -->
+       <p><h1>COMPOSE AND SEND EMAILS</h1></p>
+       <P><h3>(And now with the email system you can send emails to all subscribed users. Choose the appropriate subject and messages of your choice and hit send.)</h3></P>
+    </div><!-- end of the flex div -->
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+     <form>
+      <p><b><h2>Compose Your Email</h2></b></p>
+      <p id="errors"></p>
+      <input type="text" name="subject" placeholder="Subject" class="form-signin"><br>
+      <input type="text" name="greetings" placeholder="Greetings" class="form-signin"><br>
+      <textarea placeholder="Write Your Message" class="form-signin" rows="6"></textarea><br>
+      <button class="send-msg">SEND MAIL</button>
+     </form>
+    </div><!-- end of the flex div -->
+   </div><!-- end of the cover of the flex content -->
+</div>
+<!--end of container one-->
+<!--container two-->
+<div id="content-two">
+   <span class="close-content-one">X</span>
+   <div class="content-send-msg"><!-- covers the flex content -->
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+      <p><h1>SEND EMAILS TO CHOOSEN MAILINGLIST</h1></p>
+      <P><h3>Select below the mailing list you wish to send to</h3></P>
+    <select class="select-box" id="mailList-select">
+          <?php 
+            $query = $fetch->tables_queries();
+           if(count($query->num_rows) > 0){
+               while($results = $query->fetch_assoc()){
+                   foreach ($results as $result){ ?>
+                   <option><?php echo $result; ?></option>
+          <?php } } }?>
+      </select>
+    </div>
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+     <form>
+      <p><b><h2>Compose Your Email</h2></b></p>
+      <p id="errors"></p>
+      <input type="text" name="subject" placeholder="Subject" class="form-signin"><br>
+      <input type="text" name="greetings" placeholder="Greetings" class="form-signin"><br>
+      <textarea placeholder="Write Your Message" class="form-signin" rows="6"></textarea><br>
+      <button class="send-msg-content-two" onclick="eO.sendContent2Email(this);">SEND MAIL</button>
+     </form>
+    </div><!-- end of the flex div -->
+   </div><!-- end of the cover of the flex content -->
+</div>
+<div id="content-three">
+   <span class="close-content-one">X</span>
+   <div class="content-send-msg"><!-- covers the flex content -->
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+      <p><h1>SEND EMAILS TO SPECIFIC PERSON</h1></p>
+    <P><h3>Specify the email of the recepient below</h3></P>
+    <form>
+        <input type="email" name="email" placeholder="Enter Email Address" class="send-msg-content-two" id="sendContent3Email">
+    </form>
+    </div>
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+     <form>
+      <p><b><h2>Compose Your Email</h2></b></p>
+      <p id="errors"></p>
+      <input type="text" name="subject" placeholder="Subject" class="form-signin"><br>
+      <input type="text" name="greetings" placeholder="Greetings" class="form-signin"><br>
+      <textarea placeholder="Write Your Message" class="form-signin" rows="6"></textarea><br>
+      <button class="send-msg-content-two" onclick="eO.sendContent3Email(this);">SEND MAIL</button>
+     </form>
+    </div><!-- end of the flex div -->
+   </div>
+</div>
+<div id="content-four">
+   <span class="close-content-one">X</span>
+   <p><h1 style="text-align: center;">MAILING LISTS MANAGEMENT</h1></p> 
+   <div class="content-send-msg"><!-- covers the flex content -->
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+        <p><b><h2>Enter the name of mailing list you wish to create</h2></b></p>
+        <form>
+            <p id="errors"></p>
+            <input type="text" class="send-msg-content-two" placeholder="Enter Name Of List">
+            <button class="send-msg-content-two-input" onclick="eO.buildList(this)">BUILD</button>
+        </form>
+    </div>
+    <div class="content-send-msg-inside"><!-- containers in the flex div -->
+       <p><b><h2>Add Recipient To Mail List</h2></b></p>
+        <form>
+            <p id="errors"></p>
+            <select class="select-box">
+               <?php 
+               $query = $fetch->tables_queries();
+               if(count($query->num_rows) > 0){
+                while($results = $query->fetch_assoc()){
+                   foreach ($results as $result){ ?>
+                   <option><?php echo $result; ?></option>
+              <?php } } }?>
+            </select>
+            <input type="email" class="send-msg-content-two" placeholder="Enter Email Address">
+            <input type="number" class="send-msg-content-two" placeholder="Enter Phone number">
+            <input type="submit" value="ADD RECEPIENT" class="send-msg-content-two-input">
+            
+        </form>
+    </div><!-- end of the flex div -->
+   </div>
+</div>
+<div id="content-five">
+   <span class="close-content-one">X</span>
+   <div>
+    <p><h1>MATCH ANALYSIS AND ALGORITHMS</h1></p>
+    <p>content five<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+   </div>
+</div>
+<div id="content-six">
+   <span class="close-content-one">X</span>
+   <div>
+    <p><h1>CONTACT CENTER</h1></p>
+    <p>
+      content six<br>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+   </div>
+</div>
+<?php } ?>
+<!-- END of the divs content -->
+</div><!-- End of whole document div with id html-cover-->
+
+<!-- login overlay div -->
+<?php if (verification::not_logged_in()) {?>
+<script>
+  document.getElementById("html-cover").style.filter = "blur(5px)";
+  document.getElementsByTagName("html")[0].style.overflow = "hidden";
+</script>
+<div class="overlay">
+ <div class="main main-extra-style">
+  <form class="form">
+     <img src="images/user.png" alt="" width="72" height="72">
+      <h1 class="login-h1">Sir Please Sign In</h1>
+      <p id="errors"></p>
+      <input type="email" class="form-signin" placeholder="Email address" name="email" required autofocus><br>
+      <input type="password" class="form-signin" placeholder="Password" name="password" required><br>
+      
+      <button class="login_button" id="sub_button" onclick="sendForVerification(this);"><!-- <img id="spinner" class="rotating" src="images/spin.svg"> -->LOGIN</button>
+  </form>
+ </div>
+</div>
+<?php } ?>
+<!-- End of login overlay div -->
+<script type="text/javascript" src="inc/js/apifetch.js"></script>
+<script type="text/javascript" src="inc/js/system.js"></script>
+</body>
+</html>

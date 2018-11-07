@@ -1,0 +1,27 @@
+<html>
+        <head>
+         <title>SUBSCRIBE</title>
+         <link rel="stylesheet" type="text/css" href="./style/ejs.css">
+         </head>
+         <body link="white" alink=\"white\" vlink="white">
+                <div class="paragraph-div">
+                <p class="header"><img src="http://jabsupertips.comimages/logo6.jpg"></p>
+                <span class="paragraph"><% if(info){%>
+                   Status: <%= info.status %><br>
+                   totalResults: <%= info.totalResults %><br>
+                   articles: 
+                   <% for(let i = 0; i < info.articles.length; i++){%>
+                        Source: <%= info.articles[i].source; %><br>
+                        Author: <%= info.articles[i].author; %><br>
+                        Title: <%= info.articles[i].title; %><br>
+                        Description: <%= info.articles[i].description; %><br>
+                        Url: <%= info.articles[i].url; %><br>
+                        Url to image: <img src="<%= info.articles[i].urlToImage; %>"><br>
+                        Published at: <%= info.articles[i].publishedAt; %><br>
+                        Content: <%= info.articles[i].content %><br><br><br>
+                   <% } %><br>
+                <% } %></span>
+                </div>
+                 <p class="footer">Contact us:<br>Email: <span class="links">jab@jabsupertips.com</span> or <span class="links">jabsupertips@gmail.com</span><br><a href="http://jabsupertips.com" class="links">Go to site</a> | <a href="http://jabsupertips.com/freematches.php?freematches=sarematches" class="links">Free Tips</a> | <a href="http://jabsupertips.com/buy.php" class="links">Supertips &amp; fixed matches</a> |
+            </body>
+</html>
