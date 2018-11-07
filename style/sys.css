@@ -1,0 +1,296 @@
+.cover {
+  background: url("../images/green.jpeg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Montserrat', sans-serif;
+  padding-bottom: 20px;
+}
+
+nav {
+	background-color: black;
+  display: flex;
+  width: 100%;
+  position: relative;
+  font-family: 'PT Sans Narrow', sans-serif;
+  height: 70px;
+  margin-bottom: 50px;
+}
+
+nav h1 {
+	color: yellow;
+	font-size: 30px;
+}
+/*menu classes*/
+.menu, .content-send-msg-inside {
+  width: 30%;
+  color: white;
+  background-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.menu-svg {
+  margin-left: 70px;
+  display: block;
+  border-radius: 400px;
+  border: 5px solid red;
+  height: 150px;
+  width: 150px;
+  background: url("../images/green.jpeg"); 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content-svg {
+  margin: 50px;
+  display: block;
+}
+.menu-header {
+	text-align: center;
+}
+
+.menu-div, .content-send-msg {
+  background-color: transparent;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-justify-content: space-around;
+}
+/*overlay class*/
+.overlay {
+  background-color: rgba(0, 0, 0, .55);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+  z-index: 30;
+  transition: all 1s ease 1s;
+}
+/*html {
+	overflow: hidden;
+}*/
+
+/*signing form classes*/
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 10px;
+  font-weight: 400;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 0px;
+  border-radius: 0.3em;
+}
+.send-msg, .send-msg-content-two, .send-msg-content-two-input  {
+  width: 100%;
+  max-width: 330px;
+  font-weight: 400;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 17px;
+  margin-top: 10px;
+  color: white;
+  background-color: green;
+  padding: 15px;
+  border-radius: 0.5em;
+  border: 1px solid purple;
+  
+}
+.select-box {
+  width: 100%;
+  max-width: 330px;
+  font-weight: 400;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 17px;
+  margin-top: 10px;
+  color: white;
+  background-color: green;
+  padding: 5px;
+  border-radius: 0.5em;
+  border: 1px solid purple;
+}
+.send-msg-content-two-input:hover {
+    background-color: darkgreen;
+    color: black;
+    transition: color 0.5s;
+}
+.login_button {
+  width: 100%;
+  font-size: 17px;
+  max-width: 330px;
+  color: white;
+  background-color: green;
+  padding: 15px;
+  border-radius: 0.5em;
+  margin: 10px;
+  border: 1px solid purple;
+}
+.login_button:hover {
+  background-color: darkgreen;
+}
+
+.form input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus{
+  margin-bottom: -1px;
+  z-index: 2;
+  border: 2px solid green;
+}
+/*signing form div*/
+.main {
+  padding: 0;
+  margin-bottom: auto;
+  padding-bottom: 60px; 
+  margin-top: auto;
+  text-align: center;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .55);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .55);
+}
+.main-extra-style {
+  padding: 70px;
+  margin-top: 60px;
+}
+
+.login-h1{
+  color: green;
+}
+
+#errors {
+  display: none;
+  color: white;
+  background-color: red;
+  width: 100%;
+  max-width: 330px;
+  margin: auto;
+  margin-bottom: 15px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+.loginstatus {
+  display: none;
+  background-color: darkgreen;
+  width: 100%;
+  border: 1px solid red;
+  max-width: 400px;
+  position: absolute;
+  font-family: 'PT Sans Narrow', sans-serif;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 40;
+  transition: all 1s ease 0s;
+}
+#logout {
+  float: right;
+  height: 50px;
+  width: 70px;
+}
+.close::before {
+  content: "X";
+  color: red;
+  display: inline-block;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 20px;
+  background-color: black;
+  border-radius: 1000px;
+  border: 2px solid red;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .55);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .55);
+}
+#content-one, #content-two, #content-three, #content-four, #content-five, #content-six {
+  color: white;
+  background-color: rgba(0, 0, 0, .92);
+  position: fixed;
+  width: 85%;
+  height: 85%;
+  overflow: hidden;
+  top: 50px;
+  left: 90px;
+  z-index: 30;
+  display: none;
+  padding: 20px 0 0 20px;
+  border-left: 8px solid red;
+  border-right: 8px solid red;
+  border-image-source: url("../images/green.jpeg"); 
+  border-image-slice: 25% 25%;
+  transition: all 1s ease 0s;
+}
+.content-one, .content-two, .content-three, .content-four, .content-five, .content-six {
+  display: none;
+}
+.close-content-one {
+  color: green;
+  display: inline-block;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 20px;
+  background-color: black;
+  border-radius: 1000px;
+  border: 2px solid green;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .55);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .55);
+  transition: color,border,-webkit-transform 0.4s ease 0s;
+  overflow: hidden;
+}
+.close-content-one:hover {
+  border: 2px solid lightcoral;
+  cursor: pointer;
+  color: red;
+  -webkit-transform: rotate(1turn);
+}
+/*spinner id*/
+#spinner {
+      height: 30px;
+      width: 30px;
+      margin: auto;
+      background-color: green;
+      border-radius: 600px;
+}
+
+@-webkit-keyframes rotating {
+  from{
+      transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  animation: rotating 2s linear infinite;
+}
+/*chat like div*/
+.chat-pallette {
+  width: 200px;
+  height: 40px;
+  background-color: yellow;
+  border-radius: 5px;
+  position: fixed;
+  top: 3em;
+  left: 230px;
+  padding: 5px;
+  font-family: Robotto, sans-serif;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+}
+.chat-pallette:after {
+  content: " ";
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid yellow;
+  border-left: 10px solid transparent;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -20px;
+}
