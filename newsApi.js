@@ -10,7 +10,7 @@ let myRequest = myEmitter.on("request", (value)=>{
 		if (error) {
 			throw error;
 		}else {
-		   value.json(body);
+		   value.send(body);
 		}
 	});
   });
