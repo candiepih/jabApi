@@ -13,8 +13,8 @@ let myRequest = Request.myRequest
 var app = express();
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 3000);
-console.log(cors);
-// app.use(cors());
+
+app.use(cors());
 app.use("/style", express.static("style"));
 app.use("/images", express.static("images"));
 app.use("/inc", express.static("inc"));
