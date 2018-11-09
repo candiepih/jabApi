@@ -7,7 +7,6 @@ const modules = require("./modulesInfo.js"),
       util = modules.util,
       cors = modules.cors,
       request = modules.request;
-console.log(cors);
 let myRequest = Request.myRequest
 
 
