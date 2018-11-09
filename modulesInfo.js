@@ -3,14 +3,14 @@ const events = require("events"),
       http = require("http"),
       express = require("express"),
       fs = require("fs"),
-//       cors = require("cors"),
+      cors = require("cors"),
       util = require("util");
 module.exports = {
 	events: events,
 	fs: fs,
 	request: request,
 	http: http,
-// 	cors: cors,
+	cors: cors,
 	express: express,
 	util: util
 }
