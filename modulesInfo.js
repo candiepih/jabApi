@@ -4,6 +4,7 @@ const events = require("events"),
       express = require("express"),
       fs = require("fs"),
       cors = require("cors"),
+      bodyParser = require("body-parser"),
       util = require("util");
 module.exports = {
 	events: events,
@@ -11,6 +12,7 @@ module.exports = {
 	request: request,
 	http: http,
 	cors: cors,
+	bodyParser: bodyParser,
 	express: express,
 	util: util
 }
