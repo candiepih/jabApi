@@ -1,0 +1,17 @@
+{
+  "name": "jab-node",
+  "version": "1.0.0",
+  "description": "jab node js application",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "alex-steve",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  }
+}
